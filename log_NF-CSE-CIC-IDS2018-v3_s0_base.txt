@@ -2,18 +2,23 @@
 NF-CSE-CIC-IDS2018-v3 s0：上下文 1000，加固后 1000，验证/测试各 5000，variant=base
 
 [RF-ctx] AUROC 0.9667，1% 误报率下检出率 0.920（推理 0s）
-  STRICT n=50，FPR1% 分数型 ≤0.1× 0% / ≤1× 4% / ≤10× 4%，违反率 0.0000%（1s）
+  STRICT n=50，FPR1% 分数型 ≤0.1× 0% / ≤1× 4% / ≤10× 4%，违反率 0.0000%（2s）
 
 [RF-ctx-aug（增广重训）] AUROC 0.9706，1% 误报率下检出率 0.921（推理 0s）
-  STRICT n=50，FPR1% 分数型 ≤0.1× 0% / ≤1× 0% / ≤10× 0%，违反率 0.0000%（1s）
+  STRICT n=50，FPR1% 分数型 ≤0.1× 0% / ≤1× 0% / ≤10× 0%，违反率 0.0000%（2s）
 tabpfn 9.2.0，torch 2.11.0+cu128，CUDA 可用 True
 已用 create_default_for_version(ModelVersion.V2) 加载 TabPFN-2
 fit_mode=fit_with_cache，device=cuda
-TabPFN fit 2.5s（上下文 1000 条）
+TabPFN fit 3.9s（上下文 1000 条）
 
-[TabPFN-2] AUROC 0.9763，1% 误报率下检出率 0.926（推理 156s）
-forrtl: error (200): program aborting due to window-CLOSE event
-Image              PC                Routine            Line        Source             
-KERNELBASE.dll     00007FF9DD573BDD  Unknown               Unknown  Unknown
-KERNEL32.DLL       00007FF9DF3CCCB7  Unknown               Unknown  Unknown
-ntdll.dll          00007FF9E01EAD6C  Unknown               Unknown  Unknown
+[TabPFN-2] AUROC 0.9763，1% 误报率下检出率 0.926（推理 327s）
+  STRICT n=50，FPR1% 分数型 ≤0.1× 0% / ≤1× 0% / ≤10× 0%，违反率 0.0000%（1395s）
+
+1% 误报率下分数型绕过率：
+代价上限              ≤0.1×   ≤1×  ≤10×
+模型                                 
+RF-ctx              0.0  0.04  0.04
+RF-ctx-aug（增广重训）    0.0  0.00  0.00
+TabPFN-2            0.0  0.00  0.00
+构造流最大违反率：0.0（必须为 0）
+已写入 F:\科研\tabpfn_gpu\03_结果\S_tabpfn_icl_NF-CSE-CIC-IDS2018-v3_s0_base.csv，总用时 1766s
