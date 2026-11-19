@@ -1,0 +1,24 @@
+加固样本 200 条，约束违反 0 条（必须为 0）
+NF-ToN-IoT-v3 s0：上下文 1000，加固后 1000，验证/测试各 5000，variant=hard
+
+[RF-ctx] AUROC 0.9658，1% 误报率下检出率 0.761（推理 0s）
+  STRICT n=50，FPR1% 分数型 ≤0.1× 28% / ≤1× 100% / ≤10× 100%，违反率 0.0000%（1s）
+
+[RF-ctx-aug（增广重训）] AUROC 0.9688，1% 误报率下检出率 0.766（推理 0s）
+  STRICT n=50，FPR1% 分数型 ≤0.1× 6% / ≤1× 74% / ≤10× 100%，违反率 0.0000%（1s）
+tabpfn 9.2.0，torch 2.11.0+cu128，CUDA 可用 True
+已用 create_default_for_version(ModelVersion.V2) 加载 TabPFN-2
+fit_mode=fit_with_cache，device=cuda
+TabPFN fit 2.7s（上下文 1000 条）
+
+[TabPFN-2 上下文加固] AUROC 0.9715，1% 误报率下检出率 0.793（推理 137s）
+  STRICT n=50，FPR1% 分数型 ≤0.1× 6% / ≤1× 58% / ≤10× 88%，违反率 0.0000%（717s）
+
+1% 误报率下分数型绕过率：
+代价上限              ≤0.1×   ≤1×  ≤10×
+模型                                 
+RF-ctx             0.28  1.00  1.00
+RF-ctx-aug（增广重训）   0.06  0.74  1.00
+TabPFN-2 上下文加固     0.06  0.58  0.88
+构造流最大违反率：0.0（必须为 0）
+已写入 F:\科研\tabpfn_gpu\03_结果\S_tabpfn_icl_NF-ToN-IoT-v3_s0_hard.csv，总用时 891s
